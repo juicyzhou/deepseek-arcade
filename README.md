@@ -12,7 +12,7 @@
 
 <p align="center">
   <a href="https://juicyzhou.github.io/deepseek-arcade/">
-    <img src="screenshots/readme/hub.png" width="760" alt="流光游戏厅 · 大厅" />
+    <img src="screenshots/readme/banner.png" width="100%" alt="流光游戏厅 · 大厅 Banner" />
   </a>
 </p>
 
