@@ -1,0 +1,174 @@
+/* ============================================================
+   流光游戏厅 · 大厅样式（玻璃拟态 + 极光星海）
+   ============================================================ */
+:root {
+  --txt: #e8ecff;
+  --muted: #9aa3c7;
+  --glass: rgba(255, 255, 255, 0.055);
+  --glass-brd: rgba(255, 255, 255, 0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: var(--txt);
+  background:
+    radial-gradient(1100px 750px at 15% 8%, rgba(88, 64, 180, 0.28), transparent 60%),
+    radial-gradient(900px 700px at 85% 92%, rgba(14, 90, 140, 0.25), transparent 55%),
+    radial-gradient(700px 500px at 70% 15%, rgba(190, 60, 160, 0.14), transparent 60%),
+    linear-gradient(160deg, #05060f, #0a0a1c 55%, #04040e);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 60px;
+}
+
+#hub { width: min(100%, 1080px); }
+
+/* ---------------- 标题区 ---------------- */
+.hero { text-align: center; margin-bottom: 42px; }
+.title {
+  font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  font-size: clamp(2.6rem, 8vw, 4.6rem);
+  background: linear-gradient(90deg, #7dd3fc, #c4b5fd, #f0abfc, #ffd36e, #7dd3fc);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+  filter: drop-shadow(0 8px 30px rgba(167, 139, 250, 0.35));
+}
+@keyframes shimmer { to { background-position: 300% 0; } }
+.subtitle {
+  margin-top: 8px;
+  color: var(--muted);
+  letter-spacing: 0.4em;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+.hint-line { margin-top: 14px; color: rgba(154, 163, 199, 0.5); font-size: 0.72rem; letter-spacing: 0.24em; }
+
+/* ---------------- 卡片网格 ---------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--glass);
+  border: 1px solid var(--glass-brd);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1), box-shadow 0.3s, border-color 0.3s;
+  animation: rise 0.6s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(140, 170, 255, 0.35);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(125, 211, 252, 0.12);
+}
+@keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+.cover {
+  position: relative;
+  height: 132px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 30% 20%, rgba(255, 255, 255, 0.25), transparent 55%);
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 60% at 80% 90%, rgba(0, 0, 0, 0.35), transparent 60%);
+}
+.emoji {
+  font-size: 3.4rem;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
+  transition: transform 0.3s;
+}
+.card:hover .emoji { transform: scale(1.14) rotate(-6deg); }
+
+.status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(6, 8, 24, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+.status.ready {
+  color: #a7f3d0;
+  border-color: rgba(110, 231, 183, 0.55);
+  background: rgba(16, 60, 44, 0.5);
+  box-shadow: 0 0 16px rgba(110, 231, 183, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 50% { box-shadow: 0 0 26px rgba(110, 231, 183, 0.5); } }
+
+.info { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.info h3 { font-size: 1.12rem; font-weight: 700; letter-spacing: 0.04em; }
+.info p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; flex: 1; }
+.chip {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  padding: 4px 12px;
+  border-radius: 999px;
+  color: #cdd6ff;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.card.coming { cursor: default; opacity: 0.62; }
+.card.coming:hover { transform: none; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4); }
+.card.coming .cover { filter: saturate(0.5) brightness(0.8); }
+
+/* 入场错落 */
+.grid .card:nth-child(1) { animation-delay: 0.03s; }
+.grid .card:nth-child(2) { animation-delay: 0.1s; }
+.grid .card:nth-child(3) { animation-delay: 0.17s; }
+.grid .card:nth-child(4) { animation-delay: 0.24s; }
+.grid .card:nth-child(5) { animation-delay: 0.31s; }
+.grid .card:nth-child(6) { animation-delay: 0.38s; }
+
+footer {
+  margin-top: 44px;
+  text-align: center;
+  color: rgba(154, 163, 199, 0.5);
+  font-size: 0.75rem;
+  letter-spacing: 0.28em;
+}
+
+@media (max-width: 560px) {
+  body { padding: 24px 14px 48px; }
+  .grid { grid-template-columns: 1fr; }
+  .cover { height: 110px; }
+  .hero { margin-bottom: 30px; }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>星环守卫 · 轨道哨兵</title>
+  <meta name="description" content="360° 环形防御：转动护盾弹反陨石，守护中央恒星" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%90%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Orbitron:wght@500;700;900&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app">
+    <div id="stage">
+      <canvas id="game" width="960" height="640"></canvas>
+
+      <!-- 顶部 HUD -->
+      <div id="hud">
+        <div class="hud-group">
+          <a class="back-chip" id="backLink" href="../../index.html">← 大厅</a>
+          <div class="stat">
+            <span class="label">分数 SCORE</span>
+            <span class="value" id="score">0</span>
+          </div>
+        </div>
+        <div class="hud-group">
+          <div class="chip" id="combo">连击 -</div>
+          <div class="chip hearts" id="hearts">❤❤❤</div>
+        </div>
+        <div class="hud-group">
+          <div class="stat" style="text-align:right">
+            <span class="label">最佳 BEST</span>
+            <span class="value" id="best">0</span>
+          </div>
+          <button class="icon-btn" id="muteBtn" title="声音开关" aria-label="声音开关">🔊</button>
+          <button class="icon-btn" id="pauseBtn" title="暂停" aria-label="暂停">⏸</button>
+        </div>
+      </div>
+
+      <!-- 主菜单 -->
+      <div class="overlay" id="menu">
+        <h1 class="title">星环守卫</h1>
+        <p class="subtitle">Orbital Sentinel · 环形防御</p>
+        <p class="menu-best">最高分 <b id="menuBest">0</b></p>
+        <button class="btn" id="startBtn">守 卫 恒 星</button>
+        <div class="hint">
+          <span><kbd>←</kbd><kbd>→</kbd> / 滑动 = 转动护盾</span>
+          <span>🪨 让陨石撞上护盾圆弧 · 弹反连击</span>
+          <span>✨ 收集星尘可扩展护盾</span>
+        </div>
+      </div>
+
+      <!-- 暂停 -->
+      <div class="overlay hidden" id="pause">
+        <h2 class="title" style="font-size:clamp(1.6rem,5vw,2.6rem)">已暂停</h2>
+        <button class="btn" id="resumeBtn">继 续 守 卫</button>
+      </div>
+
+      <!-- 结算 -->
+      <div class="overlay hidden" id="over">
+        <h2 class="title" id="overTitle" style="font-size:clamp(1.6rem,5vw,2.6rem)">恒星湮灭</h2>
+        <div class="final-score" id="finalScore">0</div>
+        <div class="badge hidden" id="newRecord">✦ 新纪录 ✦</div>
+        <p class="menu-best">最高分 <b id="overBest">0</b></p>
+        <button class="btn" id="restartBtn">再 来 一 局</button>
+        <button class="btn ghost" id="menuBtn">主 菜 单</button>
+        <div class="hint"><span>按 <kbd>空格</kbd> 或 <kbd>Enter</kbd> 重新开始</span></div>
+      </div>
+
+      <div id="toast" class="hidden"></div>
+    </div>
+    <footer>星环守卫 · 轨道哨兵 — 转动护盾，弹开一切威胁</footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>

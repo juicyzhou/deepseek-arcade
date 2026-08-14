@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>踏云行 · 水墨跳山</title>
+  <meta name="description" content="国风水墨蓄力跳跃游戏：踏云而上，直上青云" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%96%8C%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;900&family=Orbitron:wght@500;700;900&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app">
+    <div id="stage">
+      <canvas id="game" width="960" height="640"></canvas>
+
+      <!-- 顶部 HUD -->
+      <div id="hud">
+        <div class="hud-group">
+          <a class="back-chip" id="backLink" href="../../index.html">← 大厅</a>
+          <div class="stat">
+            <span class="label">登高</span>
+            <span class="value"><b id="height">0</b><i>米</i></span>
+          </div>
+        </div>
+        <div class="hud-group">
+          <div class="chip" id="seals">印章 0</div>
+        </div>
+        <div class="hud-group">
+          <div class="stat right">
+            <span class="label">最佳</span>
+            <span class="value"><b id="best">0</b><i>米</i></span>
+          </div>
+          <button class="icon-btn" id="muteBtn" title="声音开关" aria-label="声音开关">🔊</button>
+          <button class="icon-btn" id="pauseBtn" title="暂停" aria-label="暂停">⏸</button>
+        </div>
+      </div>
+
+      <!-- 主菜单 -->
+      <div class="overlay" id="menu">
+        <div class="seal-mark">踏云</div>
+        <h1 class="title">踏云行</h1>
+        <p class="subtitle">Ink Leap · 水墨登高</p>
+        <p class="menu-best">最佳高度 <b id="menuBest">0</b><span>米</span></p>
+        <button class="btn" id="startBtn">开 始 登 山</button>
+        <div class="hint">
+          <span>按住蓄力 · 松开起跳</span>
+          <span>← → 移动（按住时滑动对准落点）</span>
+          <span>☁️ 祥云 · ⚡ 雷云勿踩 · 🪷 墨莲弹跳</span>
+        </div>
+      </div>
+
+      <!-- 暂停 -->
+      <div class="overlay hidden" id="pause">
+        <h2 class="title" style="font-size:clamp(1.6rem,5vw,2.6rem)">暂歇片刻</h2>
+        <button class="btn" id="resumeBtn">继 续 登 山</button>
+      </div>
+
+      <!-- 结算 -->
+      <div class="overlay hidden" id="over">
+        <h2 class="title" id="overTitle" style="font-size:clamp(1.6rem,5vw,2.6rem)">坠入云海</h2>
+        <div class="final-score"><b id="finalHeight">0</b><span>米</span></div>
+        <div class="badge hidden" id="newRecord">✦ 新纪录 ✦</div>
+        <p class="menu-best">最佳高度 <b id="overBest">0</b><span>米</span></p>
+        <button class="btn" id="restartBtn">再 来 一 局</button>
+        <button class="btn ghost" id="menuBtn">主 菜 单</button>
+        <div class="hint"><span>按 <kbd>空格</kbd> 或 <kbd>Enter</kbd> 重新开始</span></div>
+      </div>
+
+      <div id="toast" class="hidden"></div>
+    </div>
+    <footer>踏云行 · 水墨跳山 — 一笔一墨，直上青云</footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
